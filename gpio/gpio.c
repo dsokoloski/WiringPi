@@ -1436,12 +1436,17 @@ int main (int argc, char *argv [])
 
   else if (strcasecmp (argv [1], "-p") == 0)
   {
+#if 0
     piFaceSetup (200) ;
 
     for (i = 2 ; i < argc ; ++i)
       argv [i - 1] = argv [i] ;
     --argc ;
     wpMode = WPI_MODE_PIFACE ;
+#else
+    fprintf (stderr, "%s: PiFace not implemented.\n", argv [0]) ;
+    exit (EXIT_FAILURE) ;
+#endif
   }
 
 // Check for -z argument so we don't actually initialise wiringPi
@@ -1469,6 +1474,7 @@ int main (int argc, char *argv [])
 
   while (strcasecmp (argv [1], "-x") == 0)
   {
+#if 0
     if (argc < 3)
     {
       fprintf (stderr, "%s: -x missing extension command.\n", argv [0]) ;
@@ -1486,6 +1492,10 @@ int main (int argc, char *argv [])
     for (i = 3 ; i < argc ; ++i)
       argv [i - 2] = argv [i] ;
     argc -= 2 ;
+#else
+    fprintf (stderr, "%s: extension command not implemented.\n", argv [0]) ;
+    exit (EXIT_FAILURE) ;
+#endif
   }
 
   if (argc <= 1)
